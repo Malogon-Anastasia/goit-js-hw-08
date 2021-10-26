@@ -28,14 +28,14 @@ function onFormSubmit(evt) {
 
 function onFormInput(evt) {
     // const message = evt.target.value;
-    localStorage.setItem(STORAGE_KEY,  JSON.stringify(formData));
+localStorage.setItem(STORAGE_KEY,  JSON.stringify(formData));
 }
 
-function populateForm() {
+function populateForm(evt) {
 const savedMessage = localStorage.getItem(STORAGE_KEY);
 if (savedMessage) {
-    // console.log(savedMessage);
-    refs.form.email.value = savedMessage;
-    refs.form.message.value = savedMessage;
+    const saved = JSON.parse(savedMessage);
+    refs.form.email.value = saved.email;
+    refs.textarea.value = saved.message;
 }
 }
