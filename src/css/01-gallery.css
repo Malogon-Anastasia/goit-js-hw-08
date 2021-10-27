@@ -41,3 +41,7 @@
 .gallery__link:hover {
   cursor: zoom-in;
 }
+
+.gallery.sl-wrapper.sl-counter {
+  display: none;
+}

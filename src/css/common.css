@@ -16,3 +16,7 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.gallery.sl-wrapper.sl-counter {
+  display: none;
+}
