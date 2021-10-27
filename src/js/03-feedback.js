@@ -29,12 +29,13 @@ function onFormInput(evt) {
 }
 
 function populateForm(evt) {
-const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY) || "");
+const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
 // console.log(savedMessage)
-    if (savedMessage) {
-        console.log(savedMessage)
-        refs.email.value = savedMessage.email;
-        refs.textarea.value = savedMessage.message;
+
+if (savedMessage) {
+    console.log(savedMessage)
+    refs.email.value = savedMessage.email;
+    refs.textarea.value = savedMessage.message;
 }
 }
 
