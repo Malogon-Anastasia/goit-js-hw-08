@@ -11,34 +11,30 @@ refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onFormInput, 500));
 
 
-let formData = {};
-
-// refs.form.addEventListener('input', evt => {
-//     formData[evt.target.name] = evt.target.value;
-//     })
+let localValue = {};
 
 populateForm();
 
 function onFormSubmit(evt) {
     evt.preventDefault();
     evt.currentTarget.reset();
-    console.log(formData);
+    console.log(localValue);
     localStorage.removeItem(STORAGE_KEY);
 }
 
 function onFormInput(evt) {
-    formData[evt.target.name] = evt.target.value;
-    localStorage.setItem(STORAGE_KEY,  JSON.stringify(formData));
+    const formData = new FormData(refs.form);
+  formData.forEach((a, b) => (localValue[b] = a));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(localValue));
 }
 
 function populateForm(evt) {
 const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY) || "");
 // console.log(savedMessage)
-
-if (savedMessage) {
-    console.log(savedMessage)
-    refs.email.value = savedMessage.email;
-    refs.textarea.value = savedMessage.message;
+    if (savedMessage) {
+        console.log(savedMessage)
+        refs.email.value = savedMessage.email;
+        refs.textarea.value = savedMessage.message;
 }
 }
 
